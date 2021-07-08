@@ -4,9 +4,9 @@ from django.shortcuts import render
 # Create your views here.
 def hello_world(request):
     if request.method == "POST":
-        return render(request, 'accountapp/hello_world.html',context={'test' : 'POST METHOD!'})
+        return render(request, 'accountapp/hello_world.html',context={'text': '메롱'})
 
     else:
-        return render(request, 'accountapp/hello_world.html',context={'test' : 'POST METHOD!'})
+        return render(request, 'accountapp/hello_world.html',context={'text': '제출 눌러봐 바보야'})
 
 
