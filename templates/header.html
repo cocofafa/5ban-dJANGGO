@@ -9,18 +9,21 @@
     <div class="Cocofafa_header_button">
         <span>nav1</span>
         <span>nav2</span>
+
+        {% if not user.is_authenticated %}
         <span>
             <a href="{% url 'accountapp:login' %}">
                 Login
             </a>
         </span>
+        {% else %}
         <span>
-            <a href="{% url 'accountapp:create' %}">
-                Singup
-
+            <a href="{% url 'accountapp:logout' %}">
+                Logout
             </a>
-
         </span>
+        {% endif %}
+
 
     </div>
 
