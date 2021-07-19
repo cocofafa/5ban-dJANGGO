@@ -1,4 +1,4 @@
-{%  extends 'base.html' %}
+{% extends 'base.html' %}
 
 
 {% block content %}
@@ -11,13 +11,19 @@
         <div>
             {{ target_user.date_joined }}
         </div>
+
         <div>
-
-            <a href="{% url 'accountapp:update' pk=target_user %}">
-
+            <a href="{% url 'accountapp:update' pk=target_user.pk %}">
+                나는 정보수정
             </a>
-
         </div>
+
+        <div>
+            <a href="{% url 'accountapp:delete' pk=target_user.pk %}">
+                나는 회원탈퇴
+            </a>
+        </div>
+
     </div>
 {% endblock %}
 
