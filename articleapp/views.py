@@ -6,10 +6,13 @@ from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, ListView
+from django.views.generic.edit import FormMixin
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
+from commentapp.forms import CommentCreationForm
+
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
@@ -46,12 +49,11 @@ class ArticleUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
-class ArticleDeleteView(DetailView):
+class ArticleDetailView(DetailView, FormMixin):
     model = Article
-    context_object_name = 'target_ article'
-    success_url = reverse_lazy('articleapp:list')
-    template_name = 'articleapp/delete.html'
-
+    form_class = CommentCreationForm
+    context_object_name = 'target_article'
+    template_name = 'articleapp/detail.html'
 
 class ArticleListView(ListView):
     model = Article
